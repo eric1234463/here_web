@@ -13,7 +13,11 @@ import { FuseConfigService } from './core/services/config.service';
 import { FuseNavigationService } from './core/components/navigation/navigation.service';
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { Login2Module } from './main/content/login-2/login-2.module';
-
+import { environment } from './environment/environment';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { TranslateModule } from '@ngx-translate/core';
 
 const appRoutes: Routes = [
@@ -37,7 +41,11 @@ const appRoutes: Routes = [
         TranslateModule.forRoot(),
         FuseMainModule,
         FuseSampleModule,
-	    Login2Module
+        Login2Module,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireDatabaseModule, // imports firebase/database, only needed for database features
+        AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+        AngularFirestoreModule.enablePersistence(),
     ],
     providers   : [
         FuseSplashScreenService,
