@@ -1,14 +1,14 @@
-@import "src/app/core/scss/fuse";
+@import "../../../../core/scss/fuse";
 
 :host {
 
-    #login {
+    #register {
         width: 100%;
         overflow: hidden;
         background: url('/assets/images/backgrounds/login.jpg') no-repeat;
         background-size: cover;
 
-        #login-intro {
+        #register-intro {
             padding: 128px;
 
             @include media-breakpoint('sm') {
@@ -24,18 +24,16 @@
                 font-size: 42px;
                 font-weight: 300;
                 line-height: 1;
-                color:#fff;
             }
 
             .description {
                 padding-top: 8px;
                 font-size: 14px;
                 max-width: 600px;
-                color:#fff;
             }
         }
 
-        #login-form-wrapper {
+        #register-form-wrapper {
             width: 400px;
             min-width: 400px;
             max-width: 400px;
@@ -54,7 +52,7 @@
                 max-width: 100%;
             }
 
-            #login-form {
+            #register-form {
                 padding: 128px 48px 48px 48px;
 
                 @include media-breakpoint('xs') {
@@ -99,18 +97,12 @@
                         margin: 0;
                     }
 
-                    .remember-forgot-password {
-                        font-size: 13px;
-                        margin-top: 8px;
+                    .terms {
+                        margin: 16px 0 32px 0;
 
-                        .remember-me {
-                            margin-bottom: 16px
-                        }
-
-                        .forgot-password {
-                            font-size: 13px;
-                            font-weight: 500;
-                            margin-bottom: 16px
+                        a {
+                            font-size: 16px;
+                            margin-left: 4px;
                         }
                     }
 
@@ -164,13 +156,13 @@
 
                     &.google,
                     &.facebook {
-                        width: 100%;
+                        width: 70%;
                         text-transform: none;
                         color: #FFFFFF;
                         font-size: 13px;
 
                         @include media-breakpoint('xs') {
-                            width: 80%;
+                            width: 60%;
                         }
 
                         mat-icon {
@@ -186,20 +178,6 @@
 
                     &.facebook {
                         background-color: rgb(63, 92, 154);
-                    }
-                }
-
-                .register {
-                    margin: 32px auto 24px auto;
-                    width: 250px;
-                    font-weight: 500;
-
-                    .text {
-                        margin-right: 8px;
-                    }
-
-                    .link {
-
                     }
                 }
             }

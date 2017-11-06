@@ -27,7 +27,7 @@
             <div class="title">LOGIN TO YOUR ACCOUNT</div>
             <!--<div class="description">HERE DOCTOR PORTAL</div>-->
 
-            <form name="loginForm" [formGroup]="loginForm" novalidate>
+            <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
 
                 <mat-form-field>
                     <input matInput placeholder="Email" formControlName="email">
@@ -40,7 +40,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Password" formControlName="password">
+                    <input type="password" matInput placeholder="Password" formControlName="password">
                     <mat-error *ngIf="loginFormErrors.password.required">
                         Password is required
                     </mat-error>
@@ -52,7 +52,7 @@
                         Remember Me
                     </mat-checkbox>
 
-                    <a class="forgot-password" [routerLink]="'/pages/auth/forgot-password-2'">
+                    <a class="forgot-password" [routerLink]="'/forgot-password'">
                         Forgot Password?
                     </a>
                 </div>
@@ -82,7 +82,7 @@
 
             <div class="register" fxLayout="column" fxLayoutAlign="center center">
                 <span class="text">Don't have an account?</span>
-                <a class="link" [routerLink]="'/pages/auth/register-2'">Create an account</a>
+                <a class="link" [routerLink]="'/register'">Create an account</a>
             </div>
         </div>
     </div>

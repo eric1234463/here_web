@@ -12,7 +12,7 @@ import { FuseSplashScreenService } from './core/services/splash-screen.service';
 import { FuseConfigService } from './core/services/config.service';
 import { FuseNavigationService } from './core/components/navigation/navigation.service';
 import { FuseSampleModule } from './main/content/sample/sample.module';
-import { Login2Module } from './main/content/login-2/login-2.module';
+import { AuthenticationModule } from './main/content/authentication/authentication.module';
 import { environment } from './environment/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
         TranslateModule.forRoot(),
         FuseMainModule,
         FuseSampleModule,
-        Login2Module,
+        AuthenticationModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
         AngularFireAuthModule, // imports firebase/auth, only needed for auth features
