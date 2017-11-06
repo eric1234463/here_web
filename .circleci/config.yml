@@ -19,12 +19,9 @@ jobs:
           name: Installing dependencies
           command: |
             npm install
-            cd functions
-              npm install
       - save_cache:
           paths:
             - node_modules
-            - functions/node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
