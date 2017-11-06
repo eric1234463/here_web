@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+
+    docker:
+      - image: circleci/node:8.4.0
+
+    working_directory: ~/workspace
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies- # fallback to using the latest cache if no exact match is found
+
+      - run:
+          name: Installing dependencies
+          command: |
+            npm install
+            cd functions
+              npm install
+      - save_cache:
+          paths:
+            - node_modules
+            - functions/node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run tests!
+      - run:
+          name: Building
+          command: npm run build
+
+      - deploy:
+          name: Deploying hosting
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              node_modules/.bin/firebase deploy --only hosting --token "$FIREBASE_TOKEN"
+            fi
