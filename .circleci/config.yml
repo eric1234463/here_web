@@ -32,4 +32,4 @@ jobs:
       - deploy:
           name: Deploying hosting
           command: |
-            firebase depoly
+             node_modules/.bin/firebase deploy
