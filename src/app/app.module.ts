@@ -13,6 +13,7 @@ import { FuseConfigService } from './core/services/config.service';
 import { FuseNavigationService } from './core/components/navigation/navigation.service';
 import { FuseSampleModule } from './main/content/sample/sample.module';
 import { AuthenticationModule } from './main/content/authentication/authentication.module';
+import { ErrorModule } from './main/content/errors/error.module';
 import { environment } from './environment/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
         FuseMainModule,
         FuseSampleModule,
         AuthenticationModule,
+        ErrorModule,
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireDatabaseModule, // imports firebase/database, only needed for database features
         AngularFireAuthModule, // imports firebase/auth, only needed for auth features
