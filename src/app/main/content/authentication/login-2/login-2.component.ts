@@ -29,7 +29,7 @@ export class FuseLogin2Component implements OnInit {
         this
             .afAuth
             .auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password).then(success => {
-            this.router.navigateByUrl('/sample');
+            this.router.navigateByUrl('/qr');
         }, error => {
 
         });

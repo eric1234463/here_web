@@ -11,7 +11,7 @@ import { FuseMainModule } from './main/main.module';
 import { FuseSplashScreenService } from './core/services/splash-screen.service';
 import { FuseConfigService } from './core/services/config.service';
 import { FuseNavigationService } from './core/components/navigation/navigation.service';
-import { FuseSampleModule } from './main/content/sample/sample.module';
+import { QrModule } from './main/content/qr/qr.module';
 import { AuthenticationModule } from './main/content/authentication/authentication.module';
 import { ErrorModule } from './main/content/errors/error.module';
 import { environment } from './environment/environment';
@@ -41,7 +41,7 @@ const appRoutes: Routes = [
         SharedModule,
         TranslateModule.forRoot(),
         FuseMainModule,
-        FuseSampleModule,
+        QrModule,
         AuthenticationModule,
         ErrorModule,
         AngularFireModule.initializeApp(environment.firebase),

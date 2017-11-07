@@ -1,0 +1,11 @@
+<div class="page-layout blank p-24" fusePerfectScrollbar>
+
+	<div fxLayout="column" fxLayoutAlign="start center" *ngIf="(doctor | async)?.visited == false">
+		<p>Please scan this QR code to transfer data</p>
+		<qr-code [value]="'9JdJxNPiVaRypMcgnPY6'" [size]="300"></qr-code>
+		<p>{{ (doctor | async)?.name }}</p>
+	</div>
+	<div fxLayout="column" fxLayoutAlign="start center" *ngIf="(doctor | async)?.visited == true">
+		<p>QR code Scan Done!</p>
+	</div>
+</div>

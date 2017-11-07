@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { QRCodeModule } from 'angular2-qrcode';
 
 import { SharedModule } from '../../../core/modules/shared.module';
 
-import { FuseSampleComponent } from './sample.component';
+import { FuseSampleComponent } from './qr.component';
 
 const routes = [
     {
-        path     : 'sample',
+        path     : 'qr',
         component: FuseSampleComponent
     }
 ];
@@ -18,6 +19,7 @@ const routes = [
     ],
     imports     : [
         SharedModule,
+        QRCodeModule,
         RouterModule.forChild(routes)
     ],
     exports     : [
@@ -25,6 +27,6 @@ const routes = [
     ]
 })
 
-export class FuseSampleModule
+export class QrModule
 {
 }
