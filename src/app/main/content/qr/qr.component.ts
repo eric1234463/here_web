@@ -22,13 +22,17 @@ export class FuseSampleComponent
 {
     public doctorDoc: AngularFirestoreDocument<Doctor>;
     public doctor: Observable<Doctor>;
+    public currentDoctor: Doctor;
+    public loadingIndicator = true;
     constructor(private translationLoader: FuseTranslationLoaderService, public afs: AngularFirestore)
     {
         this.translationLoader.loadTranslations(english, turkish);
         this.doctorDoc = this.afs.doc('doctor/9JdJxNPiVaRypMcgnPY6');
         this.doctor = this.doctorDoc.valueChanges();
         this.doctor.subscribe(doctor => {
+            this.currentDoctor = doctor;
             console.log(doctor);
+            this.loadingIndicator = false;
         });
     }
 }

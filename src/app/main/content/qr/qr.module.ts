@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { QRCodeModule } from 'angular2-qrcode';
-
 import { SharedModule } from '../../../core/modules/shared.module';
-
 import { FuseSampleComponent } from './qr.component';
 
 const routes = [

@@ -22,6 +22,7 @@ import { FuseMaterialColorPickerComponent } from '../components/material-color-p
 import { FuseTranslationLoaderService } from '../services/translation-loader.service';
 import { CookieService } from 'ngx-cookie-service';
 import { TranslateModule } from '@ngx-translate/core';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
     declarations   : [
@@ -43,7 +44,8 @@ import { TranslateModule } from '@ngx-translate/core';
         ReactiveFormsModule,
         ColorPickerModule,
         NgxDnDModule,
-        NgxDatatableModule
+        NgxDatatableModule,
+        MomentModule
     ],
     exports        : [
         FlexLayoutModule,
@@ -60,6 +62,7 @@ import { TranslateModule } from '@ngx-translate/core';
         ColorPickerModule,
         NgxDnDModule,
         NgxDatatableModule,
+        MomentModule,
         FuseIfOnDomDirective,
         FuseMaterialColorPickerComponent,
         TranslateModule

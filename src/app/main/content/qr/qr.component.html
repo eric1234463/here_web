@@ -3,9 +3,50 @@
 	<div fxLayout="column" fxLayoutAlign="start center" *ngIf="(doctor | async)?.visited == false">
 		<p>Please scan this QR code to transfer data</p>
 		<qr-code [value]="'9JdJxNPiVaRypMcgnPY6'" [size]="300"></qr-code>
-		<p>{{ (doctor | async)?.name }}</p>
+		
 	</div>
-	<div fxLayout="column" fxLayoutAlign="start center" *ngIf="(doctor | async)?.visited == true">
-		<p>QR code Scan Done!</p>
+	<div fxLayout="column" fxLayoutAlign="start" *ngIf="(doctor | async)?.visited == true">
+		<p>{{ currentDoctor.name }}</p>
+		<ngx-datatable
+		class="material"
+		[rows]="currentDoctor.records"
+		[loadingIndicator]="loadingIndicator"
+		[columnMode]="'force'"
+		[headerHeight]="50"
+		[footerHeight]="50"
+		[rowHeight]="'auto'"
+		[scrollbarH]="true"
+		[reorderable]="reorderable"
+		[limit]="20">
+
+			<ngx-datatable-column name="Date">
+				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+					<span>{{row.visitDate | amDateFormat:'DD - MMMM - YYYY'}}</span>
+				</ng-template>							
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="Title">
+				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+					<span>{{row.title}}</span>
+				</ng-template>		
+			</ngx-datatable-column>
+
+			<ngx-datatable-column name="Description">
+				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+					<span>{{row.description}}</span>
+				</ng-template>	
+			</ngx-datatable-column>
+			<ngx-datatable-column name="Factor">
+					<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+						<span *ngFor="let factor of row.factor" class="h4 p-4 m-4" [ngClass]="factor.class" >{{factor.name}}</span>
+					</ng-template>	
+				</ngx-datatable-column>
+			<ngx-datatable-column name="Medicine">
+				<ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+					<span *ngFor="let medicine of row.medicine" class="h4 p-4 m-4" [ngClass]="medicine.class">{{medicine.name}}</span>
+				</ng-template>	
+			</ngx-datatable-column>
+		</ngx-datatable>
+	
 	</div>
 </div>
