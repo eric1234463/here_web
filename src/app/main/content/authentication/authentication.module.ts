@@ -8,15 +8,11 @@ import { FuseForgotPassword2Component } from './forgot-password-2/forgot-passwor
 
 const routes = [
     {
-        path     : 'login',
-        component: FuseLogin2Component
-    },
-    {
-        path     : 'register',
+        path: 'register',
         component: FuseRegister2Component
     },
     {
-        path     : 'forgot-password',
+        path: 'forgot-password',
         component: FuseForgotPassword2Component
     }
 ];
@@ -27,13 +23,12 @@ const routes = [
         FuseRegister2Component,
         FuseForgotPassword2Component,
     ],
-    imports     : [
+    imports: [
         SharedModule,
         RouterModule.forChild(routes)
     ]
 })
 
-export class AuthenticationModule
-{
+export class AuthenticationModule {
 
 }

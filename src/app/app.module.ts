@@ -20,11 +20,24 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { TranslateModule } from '@ngx-translate/core';
+import { FuseError404Component } from './main/content/errors/404/error-404.component';
+import { FuseLogin2Component } from './main/content/authentication/login-2/login-2.component';
+
 
 const appRoutes: Routes = [
+
     {
-        path      : '**',
-        redirectTo: 'login'
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
+    {
+        path: 'login',
+        component: FuseLogin2Component
+    },
+    {
+        path: '**',
+        redirectTo: '404'
     }
 ];
 
@@ -32,7 +45,7 @@ const appRoutes: Routes = [
     declarations: [
         AppComponent
     ],
-    imports     : [
+    imports: [
         BrowserModule,
         HttpModule,
         HttpClientModule,
@@ -49,15 +62,14 @@ const appRoutes: Routes = [
         AngularFireAuthModule, // imports firebase/auth, only needed for auth features
         AngularFirestoreModule.enablePersistence(),
     ],
-    providers   : [
+    providers: [
         FuseSplashScreenService,
         FuseConfigService,
         FuseNavigationService
     ],
-    bootstrap   : [
+    bootstrap: [
         AppComponent
     ]
 })
-export class AppModule
-{
+export class AppModule {
 }

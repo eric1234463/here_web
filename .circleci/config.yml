@@ -27,7 +27,7 @@ jobs:
       # run tests!
       - run:
           name: Building
-          command: npm run build
+          command: npm run build-prod
 
       - deploy:
           name: Deploying hosting

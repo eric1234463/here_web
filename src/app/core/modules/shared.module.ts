@@ -25,7 +25,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MomentModule } from 'angular2-moment';
 
 @NgModule({
-    declarations   : [
+    declarations: [
         FuseMatSidenavHelperDirective,
         FuseMatSidenavTogglerDirective,
         FuseConfirmDialogComponent,
@@ -35,7 +35,7 @@ import { MomentModule } from 'angular2-moment';
         FusePerfectScrollbarDirective,
         FuseMaterialColorPickerComponent
     ],
-    imports        : [
+    imports: [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
@@ -47,7 +47,7 @@ import { MomentModule } from 'angular2-moment';
         NgxDatatableModule,
         MomentModule
     ],
-    exports        : [
+    exports: [
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
@@ -70,7 +70,7 @@ import { MomentModule } from 'angular2-moment';
     entryComponents: [
         FuseConfirmDialogComponent
     ],
-    providers      : [
+    providers: [
         CookieService,
         FuseMatchMedia,
         FuseNavbarVerticalService,
@@ -79,7 +79,6 @@ import { MomentModule } from 'angular2-moment';
     ]
 })
 
-export class SharedModule
-{
+export class SharedModule {
 
 }

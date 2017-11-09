@@ -6,11 +6,11 @@ import { FuseError500Component } from './500/error-500.component';
 
 const routes = [
     {
-        path     : 'not-found',
+        path: '404',
         component: FuseError404Component
     },
     {
-        path     : 'error',
+        path: '500',
         component: FuseError500Component
     }
 ];
@@ -20,13 +20,12 @@ const routes = [
         FuseError404Component,
         FuseError500Component
     ],
-    imports     : [
+    imports: [
         SharedModule,
         RouterModule.forChild(routes)
     ]
 })
 
-export class ErrorModule
-{
+export class ErrorModule {
 
 }
