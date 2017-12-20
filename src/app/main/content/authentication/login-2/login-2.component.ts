@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {FuseConfigService} from '../../../../core/services/config.service';
-import {fuseAnimations} from '../../../../core/animations';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FuseConfigService } from '../../../../core/services/config.service';
+import { fuseAnimations } from '../../../../core/animations';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'fuse-login-2', templateUrl: './login-2.component.html', styleUrls: ['./login-2.component.scss'], animations: fuseAnimations
@@ -13,7 +14,7 @@ export class FuseLogin2Component implements OnInit {
     loginForm: FormGroup;
     loginFormErrors: any;
 
-    constructor(private fuseConfig: FuseConfigService, private formBuilder: FormBuilder, public afAuth: AngularFireAuth, public router : Router) {
+    constructor(private fuseConfig: FuseConfigService, private formBuilder: FormBuilder, public afAuth: AngularFireAuth, public router: Router, public snackBar: MatSnackBar) {
         this.fuseConfig.setSettings({
             layout: {
                 navigation: 'none', toolbar: 'none', footer: 'none'
@@ -26,12 +27,12 @@ export class FuseLogin2Component implements OnInit {
     }
 
     login() {
-        this
-            .afAuth
-            .auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password).then(success => {
+        this.afAuth.auth.signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password).then(success => {
             this.router.navigateByUrl('/qr');
         }, error => {
-
+            this.snackBar.open('Login Error', 'Understand', {
+                duration: 5000
+            });
         });
     }
 
