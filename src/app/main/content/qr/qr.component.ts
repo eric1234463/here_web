@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FuseTranslationLoaderService } from '../../../core/services/translation-loader.service';
 import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
 import { locale as english } from './i18n/en';
@@ -24,15 +25,18 @@ export class FuseSampleComponent
     public doctor: Observable<Doctor>;
     public currentDoctor: Doctor;
     public loadingIndicator = true;
-    constructor(private translationLoader: FuseTranslationLoaderService, public afs: AngularFirestore)
+    constructor(private translationLoader: FuseTranslationLoaderService, public afs: AngularFirestore, public afAuth: AngularFireAuth)
     {
+        this.afAuth.authState.subscribe(user => {
+            this.doctorDoc = this.afs.doc('doctor/' + user.uid);
+            this.doctor = this.doctorDoc.valueChanges();
+            this.doctor.subscribe(doctor => {
+                this.currentDoctor = doctor;
+                console.log(doctor);
+                this.loadingIndicator = false;
+            });
+        })
         this.translationLoader.loadTranslations(english, turkish);
-        this.doctorDoc = this.afs.doc('doctor/9JdJxNPiVaRypMcgnPY6');
-        this.doctor = this.doctorDoc.valueChanges();
-        this.doctor.subscribe(doctor => {
-            this.currentDoctor = doctor;
-            console.log(doctor);
-            this.loadingIndicator = false;
-        });
+
     }
 }
