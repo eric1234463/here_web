@@ -35,7 +35,7 @@ export class FuseSampleComponent
                 console.log(doctor);
                 this.loadingIndicator = false;
             });
-        })
+        });
         this.translationLoader.loadTranslations(english, turkish);
 
     }
