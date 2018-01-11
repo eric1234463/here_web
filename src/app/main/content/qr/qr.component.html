@@ -35,7 +35,7 @@
                 </ngx-datatable-column>
                 <ngx-datatable-column name="Medicine">
                     <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                        <span *ngFor="let medicine of row.medicines" class="h4 p-4 m-4" [ngClass]="medicine.class">{{medicine.name}}</span>
+                        <p *ngFor="let medicine of row.medicines" class="h4 p-4 m-4" [ngClass]="medicine.class">{{medicine.name}}</p>
                     </ng-template>
                 </ngx-datatable-column>
             </ngx-datatable>
