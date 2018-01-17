@@ -3,7 +3,10 @@ import { RouterModule } from '@angular/router';
 import { QRCodeModule } from 'angular2-qrcode';
 import { SharedModule } from '../../../core/modules/shared.module';
 import { FuseSampleComponent } from './qr.component';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import { HttpClientModule } from '@angular/common/http';
 
+const config: SocketIoConfig = { url: 'https://herefyp.herokuapp.com', options: {} };
 const routes = [
     {
         path     : 'qr',
@@ -18,6 +21,8 @@ const routes = [
     imports     : [
         SharedModule,
         QRCodeModule,
+        HttpClientModule,
+        SocketIoModule.forRoot(config),
         RouterModule.forChild(routes)
     ],
     exports     : [
