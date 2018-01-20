@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { SharedModule } from '../core/modules/shared.module';
-
 import { FuseMainComponent } from './main.component';
 import { FuseContentComponent } from './content/content.component';
 import { FuseFooterComponent } from './footer/footer.component';
@@ -15,7 +13,7 @@ import { FuseQuickPanelComponent } from './quick-panel/quick-panel.component';
 import { FuseThemeOptionsComponent } from '../core/components/theme-options/theme-options.component';
 import { FuseShortcutsModule } from '../core/components/shortcuts/shortcuts.module';
 import { FuseSearchBarModule } from '../core/components/search-bar/search-bar.module';
-
+import { UserService } from '../services/user';
 @NgModule({
     declarations: [
         FuseContentComponent,
@@ -28,18 +26,20 @@ import { FuseSearchBarModule } from '../core/components/search-bar/search-bar.mo
         FuseThemeOptionsComponent,
         FuseQuickPanelComponent
     ],
-    imports     : [
+    imports: [
         SharedModule,
         RouterModule,
         FuseNavigationModule,
         FuseShortcutsModule,
         FuseSearchBarModule,
     ],
-    exports     : [
+    exports: [
         FuseMainComponent
+    ],
+    providers: [
+        UserService
     ]
 })
 
-export class FuseMainModule
-{
+export class FuseMainModule {
 }

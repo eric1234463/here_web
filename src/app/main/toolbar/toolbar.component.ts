@@ -2,65 +2,65 @@ import { Component } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { FuseConfigService } from '../../core/services/config.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import { Doctor, UserService } from '../../services/user';
 @Component({
-    selector   : 'fuse-toolbar',
+    selector: 'fuse-toolbar',
     templateUrl: './toolbar.component.html',
-    styleUrls  : ['./toolbar.component.scss']
+    styleUrls: ['./toolbar.component.scss']
 })
 
-export class FuseToolbarComponent
-{
+export class FuseToolbarComponent {
     userStatusOptions: any[];
     languages: any;
     selectedLanguage: any;
     showLoadingBar: boolean;
     horizontalNav: boolean;
-
+    public user: Doctor;
     constructor(
         private router: Router,
         private fuseConfig: FuseConfigService,
-        private translate: TranslateService
-    )
-    {
+        private translate: TranslateService,
+        public userService: UserService,
+    ) {
+        this.userService.getUser().then(user => this.user = user);
         this.userStatusOptions = [
             {
                 'title': 'Online',
-                'icon' : 'icon-checkbox-marked-circle',
+                'icon': 'icon-checkbox-marked-circle',
                 'color': '#4CAF50'
             },
             {
                 'title': 'Away',
-                'icon' : 'icon-clock',
+                'icon': 'icon-clock',
                 'color': '#FFC107'
             },
             {
                 'title': 'Do not Disturb',
-                'icon' : 'icon-minus-circle',
+                'icon': 'icon-minus-circle',
                 'color': '#F44336'
             },
             {
                 'title': 'Invisible',
-                'icon' : 'icon-checkbox-blank-circle-outline',
+                'icon': 'icon-checkbox-blank-circle-outline',
                 'color': '#BDBDBD'
             },
             {
                 'title': 'Offline',
-                'icon' : 'icon-checkbox-blank-circle-outline',
+                'icon': 'icon-checkbox-blank-circle-outline',
                 'color': '#616161'
             }
         ];
 
         this.languages = [
             {
-                'id'   : 'en',
+                'id': 'en',
                 'title': 'English',
-                'flag' : 'us'
+                'flag': 'us'
             },
             {
-                'id'   : 'tr',
+                'id': 'tr',
                 'title': 'Turkish',
-                'flag' : 'tr'
+                'flag': 'tr'
             }
         ];
 
@@ -68,12 +68,10 @@ export class FuseToolbarComponent
 
         router.events.subscribe(
             (event) => {
-                if ( event instanceof NavigationStart )
-                {
+                if (event instanceof NavigationStart) {
                     this.showLoadingBar = true;
                 }
-                if ( event instanceof NavigationEnd )
-                {
+                if (event instanceof NavigationEnd) {
                     this.showLoadingBar = false;
                 }
             });
@@ -84,18 +82,21 @@ export class FuseToolbarComponent
 
     }
 
-    search(value)
-    {
+    search(value) {
         // Do your search here...
         console.log(value);
     }
 
-    setLanguage(lang)
-    {
+    setLanguage(lang) {
         // Set the selected language for toolbar
         this.selectedLanguage = lang;
 
         // Use the selected language for translations
         this.translate.use(lang.id);
+    }
+
+    logout(){
+        this.userService.logout();
+        this.router.navigateByUrl('/');
     }
 }

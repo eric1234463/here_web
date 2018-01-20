@@ -27,7 +27,7 @@
             <div class="title">LOGIN TO YOUR ACCOUNT</div>
             <!--<div class="description">HERE DOCTOR PORTAL</div>-->
 
-            <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+            <!-- <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
 
                 <mat-form-field>
                     <input matInput placeholder="Email" formControlName="email">
@@ -60,22 +60,21 @@
                     LOGIN
                 </button>
 
-            </form>
+            </form> -->
 
-            <div class="separator">
-                <span class="text">OR</span>
-            </div>
+
 
             <div fxLayout="column" fxLayoutAlign="start center">
 
                 <button mat-raised-button class="google">
                     Log in with Google
                 </button>
-
-                <!--<button mat-raised-button class="facebook">-->
-                <!--Log in with Facebook-->
-                <!--</button>-->
-
+                <div class="separator">
+                    <span class="text">OR</span>
+                </div>
+                <button mat-raised-button class="facebook" (click)="login('facebook')">
+                    Log in with Facebook
+                </button>
             </div>
         </div>
     </div>

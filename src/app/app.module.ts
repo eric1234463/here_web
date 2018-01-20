@@ -14,16 +14,17 @@ import { FuseNavigationService } from './core/components/navigation/navigation.s
 import { QrModule } from './main/content/qr/qr.module';
 import { AuthenticationModule } from './main/content/authentication/authentication.module';
 import { ErrorModule } from './main/content/errors/error.module';
-import { environment } from './environment/environment';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { TranslateModule } from '@ngx-translate/core';
 import { FuseError404Component } from './main/content/errors/404/error-404.component';
 import { FuseLogin2Component } from './main/content/authentication/login-2/login-2.component';
+import { Angular2SocialLoginModule } from 'angular2-social-login';
 
-
+const providers = {
+    'facebook': {
+        'clientId': '292006121312524',
+        'apiVersion': 'v2.5'
+    }
+};
 const appRoutes: Routes = [
 
     {
@@ -49,6 +50,7 @@ const appRoutes: Routes = [
         BrowserModule,
         HttpModule,
         HttpClientModule,
+        Angular2SocialLoginModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(appRoutes),
         SharedModule,
@@ -57,10 +59,6 @@ const appRoutes: Routes = [
         QrModule,
         AuthenticationModule,
         ErrorModule,
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireDatabaseModule, // imports firebase/database, only needed for database features
-        AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-        AngularFirestoreModule.enablePersistence(),
     ],
     providers: [
         FuseSplashScreenService,
@@ -73,3 +71,4 @@ const appRoutes: Routes = [
 })
 export class AppModule {
 }
+Angular2SocialLoginModule.loadProvidersScripts(providers);

@@ -1,4 +1,4 @@
-<mat-toolbar class="p-0 mat-elevation-z1">
+<mat-toolbar class="p-0 mat-elevation-z1" *ngIf="user">
 
     <mat-progress-bar *ngIf="showLoadingBar" class="loading-bar" color="accent" mode="indeterminate"></mat-progress-bar>
 
@@ -30,8 +30,8 @@
             <button mat-button [matMenuTriggerFor]="userMenu"
                     class="user-button">
                 <div fxLayout="row" fxLayoutAlign="center center">
-                    <img class="avatar" src="assets/images/avatars/profile.jpg">
-                    <span class="username mr-12" fxHide fxShow.gt-sm>Eric Kwong</span>
+                    <img class="avatar" src="{{user.photoURL}}">
+                    <span class="username mr-12" fxHide fxShow.gt-sm>{{ user.displayName }}</span>
                     <mat-icon class="s-16" fxHide.xs>keyboard_arrow_down</mat-icon>
                 </div>
             </button>
@@ -43,7 +43,7 @@
                     <span>My Profile</span>
                 </button>
 
-                <button mat-menu-item class="">
+                <button mat-menu-item class="" (click)="logout()">
                     <mat-icon>exit_to_app</mat-icon>
                     <span>Logout</span>
                 </button>
