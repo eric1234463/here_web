@@ -35,31 +35,27 @@ export class UserService {
     constructor(public http: HttpClient, public auth: AuthService) {}
     async facebookLogin() {
         let user = await this.auth.login("facebook").toPromise();
-        const facebookUser = user as FacebookUser
+        const facebookUser = user as FacebookUser;
         const currentUser = await this.http
-            .post<Doctor>(
-                "https://herefyp.herokuapp.com/api/doctor/login",
-                {
-                    uid: facebookUser.uid,
-                    email: facebookUser.email
-                }
-            ).toPromise();
-        window.localStorage.setItem('user',JSON.stringify(currentUser));
+            .post<Doctor>("https://herefyp.herokuapp.com/api/doctor/login", {
+                uid: facebookUser.uid,
+                email: facebookUser.email
+            })
+            .toPromise();
+        window.localStorage.setItem("user", JSON.stringify(currentUser));
         return currentUser;
     }
 
     async googleLogin() {
         let user = await this.auth.login("google").toPromise();
-        const googleUser = user as GoogleUser
+        const googleUser = user as GoogleUser;
         const currentUser = await this.http
-            .post<Doctor>(
-                "https://herefyp.herokuapp.com/api/doctor/login",
-                {
-                    uid: googleUser.uid,
-                    email: googleUser.email
-                }
-            ).toPromise();
-        window.localStorage.setItem('user',JSON.stringify(currentUser));
+            .post<Doctor>("https://herefyp.herokuapp.com/api/doctor/login", {
+                uid: googleUser.uid,
+                email: googleUser.email
+            })
+            .toPromise();
+        window.localStorage.setItem("user", JSON.stringify(currentUser));
         return currentUser;
     }
 
@@ -68,6 +64,6 @@ export class UserService {
     }
 
     async getUser() {
-        return await JSON.parse(window.localStorage.getItem("user")
+        return await JSON.parse(window.localStorage.getItem("user"));
     }
 }
