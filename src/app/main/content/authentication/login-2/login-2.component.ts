@@ -29,21 +29,23 @@ export class FuseLogin2Component {
         });
         this.userService.getUser().then(user => {
             if (user !== null) {
-                this.router.navigateByUrl("/qr");
+                this.router.navigateByUrl("/home");
             }
         });
     }
 
-    googleLogin() {
-        this.userService.googleLogin().then(user => {
-            this.router.navigateByUrl("/qr");
-        });
+    async googleLogin() {
+        const user = await this.userService.googleLogin();
+        if (user) {
+            this.router.navigateByUrl("/home");
+        }
     }
 
-    facebookLogin() {
-        this.userService.facebookLogin().then(user => {
-            this.router.navigateByUrl("/qr");
-        });
+    async facebookLogin() {
+        const user = await this.userService.facebookLogin();
+        if (user) {
+            this.router.navigateByUrl("/home");
+        }
     }
 
     // ngOnInit() {

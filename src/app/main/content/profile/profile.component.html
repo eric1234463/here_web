@@ -1,0 +1,83 @@
+<div id="profile" class="page-layout simple tabbed" fusePerfectScrollbar>
+
+    <!-- HEADER -->
+    <div class="header p-24" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+         fxLayoutAlign.gt-sm="space-between end">
+
+        <div class="user-info" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+             fxLayoutAlign.gt-sm="start center">
+            <img class="profile-image avatar huge" [src]="doctor.photoURL"
+                 *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+                 <div class="name" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                     {{doctor.displayName}}
+            </div>
+        </div>
+
+        <div class="actions" fxLayout="row" fxLayoutAlign="end center" *fuseIfOnDom
+             [@animate]="{value:'*',params:{delay:'200ms'}}">
+            <button mat-raised-button color="accent" aria-label="Follow">Follow</button>
+            <button mat-raised-button color="primary" aria-label="Send Message">Send Message</button>
+        </div>
+
+    </div>
+    <!-- / HEADER -->
+    <!-- CONTENT -->
+    <div class="content" *ngIf="doctor">
+        <div id="about" class="p-24" fxLayout="row" fxLayoutWrap>
+
+            <div class="about-content" fxLayout="column" fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="65">
+
+                <div class="profile-box info-box general" fxLayout="column">
+
+                    <header class="mat-accent-bg">
+                        <div class="title">General Information</div>
+                    </header>
+
+                    <div class="content">
+                        <div class="info-line">
+                            <div class="title">Gender</div>
+                            <div class="info">{{doctor.gender}}</div>
+                        </div>
+
+                        <div class="info-line">
+                            <div class="title">Age</div>
+                            <div class="info">{{doctor.age}}</div>
+                        </div>
+
+                        <div class="info-line">
+                            <div class="title">About Me</div>
+                            <div class="info">{{doctor.about}}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-box info-box contact" fxLayout="column">
+
+                    <header class="mat-accent-bg">
+                        <div class="title">Contact</div>
+                    </header>
+
+                    <div class="content">
+                        <div class="info-line">
+                            <div class="title">Address</div>
+                            <div class="info">{{doctor.location}}</div>
+                        </div>
+                        <div class="info-line">
+                            <div class="title">Tel.</div>
+                            <div class="info">
+                                <span>{{doctor.telphone}}</span>
+                            </div>
+                        </div>
+                        <div class="info-line">
+                            <div class="title">Emails</div>
+                            <div class="info">
+                                <span>{{doctor.email}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- / CONTENT -->
+</div>

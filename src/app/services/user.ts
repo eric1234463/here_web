@@ -7,6 +7,9 @@ export interface Doctor {
     uid: String;
     photoURL?: String;
     displayName?: String;
+    gender?: String;
+    about?: String;
+    telphone?: String;
     location: String;
     google_lng: number;
     google_lat: number;
@@ -30,56 +33,41 @@ export interface GoogleUser {
 export class UserService {
     public user: Doctor;
     constructor(public http: HttpClient, public auth: AuthService) {}
-    facebookLogin() {
-        return new Promise((resolve, reject) => {
-            this.auth.login("facebook").subscribe((user: FacebookUser) => {
-                this.http
-                    .post<Doctor>(
-                        "https://herefyp.herokuapp.com/api/doctor/login",
-                        {
-                            uid: user.uid,
-                            email: user.email
-                        }
-                    )
-                    .subscribe(currentUser => {
-                        window.localStorage.setItem(
-                            "user",
-                            JSON.stringify(currentUser)
-                        );
-                        resolve(currentUser);
-                    });
-            });
-        });
+    async facebookLogin() {
+        let user = await this.auth.login("facebook").toPromise();
+        const facebookUser = user as FacebookUser
+        const currentUser = await this.http
+            .post<Doctor>(
+                "https://herefyp.herokuapp.com/api/doctor/login",
+                {
+                    uid: facebookUser.uid,
+                    email: facebookUser.email
+                }
+            ).toPromise();
+        window.localStorage.setItem('user',JSON.stringify(currentUser));
+        return currentUser;
     }
 
-    googleLogin() {
-        return new Promise((resolve, reject) => {
-            this.auth.login("google").subscribe((user: GoogleUser) => {
-                this.http
-                    .post<Doctor>(
-                        "https://herefyp.herokuapp.com/api/doctor/login",
-                        {
-                            uid: user.uid,
-                            email: user.email
-                        }
-                    )
-                    .subscribe(currentUser => {
-                        window.localStorage.setItem(
-                            "user",
-                            JSON.stringify(currentUser)
-                        );
-                        resolve(currentUser);
-                    });
-            });
-        });
+    async googleLogin() {
+        let user = await this.auth.login("google").toPromise();
+        const googleUser = user as GoogleUser
+        const currentUser = await this.http
+            .post<Doctor>(
+                "https://herefyp.herokuapp.com/api/doctor/login",
+                {
+                    uid: googleUser.uid,
+                    email: googleUser.email
+                }
+            ).toPromise();
+        window.localStorage.setItem('user',JSON.stringify(currentUser));
+        return currentUser;
     }
+
     logout() {
         window.localStorage.removeItem("user");
     }
 
-    getUser() {
-        return new Promise<Doctor>((resolve, reject) => {
-            resolve(JSON.parse(window.localStorage.getItem("user")));
-        });
+    async getUser() {
+        return await JSON.parse(window.localStorage.getItem("user")
     }
 }

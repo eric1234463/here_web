@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { FuseConfigService } from '../../core/services/config.service';
-import { TranslateService } from '@ngx-translate/core';
-import { Doctor, UserService } from '../../services/user';
+import { Component } from "@angular/core";
+import { NavigationEnd, NavigationStart, Router } from "@angular/router";
+import { FuseConfigService } from "../../core/services/config.service";
+import { TranslateService } from "@ngx-translate/core";
+import { Doctor, UserService } from "../../services/user";
 @Component({
-    selector: 'fuse-toolbar',
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.scss']
+    selector: "fuse-toolbar",
+    templateUrl: "./toolbar.component.html",
+    styleUrls: ["./toolbar.component.scss"]
 })
-
 export class FuseToolbarComponent {
     userStatusOptions: any[];
     languages: any;
@@ -20,66 +19,64 @@ export class FuseToolbarComponent {
         private router: Router,
         private fuseConfig: FuseConfigService,
         private translate: TranslateService,
-        public userService: UserService,
+        public userService: UserService
     ) {
-        this.userService.getUser().then(user => this.user = user);
+        this.userService.getUser().then(user => (this.user = user));
         this.userStatusOptions = [
             {
-                'title': 'Online',
-                'icon': 'icon-checkbox-marked-circle',
-                'color': '#4CAF50'
+                title: "Online",
+                icon: "icon-checkbox-marked-circle",
+                color: "#4CAF50"
             },
             {
-                'title': 'Away',
-                'icon': 'icon-clock',
-                'color': '#FFC107'
+                title: "Away",
+                icon: "icon-clock",
+                color: "#FFC107"
             },
             {
-                'title': 'Do not Disturb',
-                'icon': 'icon-minus-circle',
-                'color': '#F44336'
+                title: "Do not Disturb",
+                icon: "icon-minus-circle",
+                color: "#F44336"
             },
             {
-                'title': 'Invisible',
-                'icon': 'icon-checkbox-blank-circle-outline',
-                'color': '#BDBDBD'
+                title: "Invisible",
+                icon: "icon-checkbox-blank-circle-outline",
+                color: "#BDBDBD"
             },
             {
-                'title': 'Offline',
-                'icon': 'icon-checkbox-blank-circle-outline',
-                'color': '#616161'
+                title: "Offline",
+                icon: "icon-checkbox-blank-circle-outline",
+                color: "#616161"
             }
         ];
 
         this.languages = [
             {
-                'id': 'en',
-                'title': 'English',
-                'flag': 'us'
+                id: "en",
+                title: "English",
+                flag: "us"
             },
             {
-                'id': 'tr',
-                'title': 'Turkish',
-                'flag': 'tr'
+                id: "tr",
+                title: "Turkish",
+                flag: "tr"
             }
         ];
 
         this.selectedLanguage = this.languages[0];
 
-        router.events.subscribe(
-            (event) => {
-                if (event instanceof NavigationStart) {
-                    this.showLoadingBar = true;
-                }
-                if (event instanceof NavigationEnd) {
-                    this.showLoadingBar = false;
-                }
-            });
-
-        this.fuseConfig.onSettingsChanged.subscribe((settings) => {
-            this.horizontalNav = settings.layout.navigation === 'top';
+        router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+                this.showLoadingBar = true;
+            }
+            if (event instanceof NavigationEnd) {
+                this.showLoadingBar = false;
+            }
         });
 
+        this.fuseConfig.onSettingsChanged.subscribe(settings => {
+            this.horizontalNav = settings.layout.navigation === "top";
+        });
     }
 
     search(value) {
@@ -95,8 +92,12 @@ export class FuseToolbarComponent {
         this.translate.use(lang.id);
     }
 
-    logout(){
+    logout() {
         this.userService.logout();
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl("/");
+    }
+
+    goToProfile() {
+        this.router.navigateByUrl("/profile");
     }
 }
