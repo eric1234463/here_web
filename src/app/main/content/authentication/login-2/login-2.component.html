@@ -66,13 +66,13 @@
 
             <div fxLayout="column" fxLayoutAlign="start center">
 
-                <button mat-raised-button class="google">
+                <button mat-raised-button class="google" (click)="googleLogin()">
                     Log in with Google
                 </button>
                 <div class="separator">
                     <span class="text">OR</span>
                 </div>
-                <button mat-raised-button class="facebook" (click)="login('facebook')">
+                <button mat-raised-button class="facebook" (click)="facebookLogin()">
                     Log in with Facebook
                 </button>
             </div>
