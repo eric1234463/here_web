@@ -27,11 +27,13 @@ export class NavigationModel {
                         type: "item",
                         icon: "home",
                         url: "/home"
-                        // 'badge': {
-                        // 	'title': 25,
-                        // 	'bg': '#F44336',
-                        // 	'fg': '#FFFFFF'
-                        // }
+                    },
+                    {
+                        id: "Feeds",
+                        title: "Feeds",
+                        type: "item",
+                        icon: "rss_feed",
+                        url: "/feeds"
                     }
                 ]
             }

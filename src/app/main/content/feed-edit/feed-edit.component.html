@@ -1,0 +1,44 @@
+<div id="forms" class="page-layout simple fullwidth" fxLayout="column" fusePerfectScrollbar>
+    <div class="content p-24">
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayout="row">
+            <!-- REACTIVE FORM EXAMPLE -->
+            <form [formGroup]="form" (ngSubmit)="update()" class="mat-white-bg mat-elevation-z4 p-24 mr-24 mb-24" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto">
+
+                <div class="h2 mb-24">Feed Form</div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <h2 fxFlex="100">Feed Background</h2>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <div class="hovereffect" (click)="upload()">
+                        <img fxLayout="row" class="img-responsive" [src]="form.value.photoURL" *ngIf="form.value.photoURL" />
+                        <div class="overlay">
+                            <h2>Feed Background</h2>
+                            <p>
+                                <span>Click HERE</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <mat-form-field fxFlex="100">
+                        <input matInput placeholder="Title" formControlName="title" required>
+                        <mat-error *ngIf="!form.controls.title.valid">
+                            Title is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+                    <mat-form-field fxFlex="100">
+                        <textarea rows="15" matInput placeholder="Content" formControlName="content"></textarea>
+                        <mat-error *ngIf="!form.controls.content.valid">
+                            Content is required!
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button type="submit" color="accent" [disabled]="!form.valid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

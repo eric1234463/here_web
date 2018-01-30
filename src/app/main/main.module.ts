@@ -14,13 +14,18 @@ import { FuseThemeOptionsComponent } from "../core/components/theme-options/them
 import { FuseShortcutsModule } from "../core/components/shortcuts/shortcuts.module";
 import { FuseSearchBarModule } from "../core/components/search-bar/search-bar.module";
 import { UserService } from "../services/user";
+import { FeedService } from "../services/feed";
 import { QRCodeModule } from "angular2-qrcode";
 import { SocketIoModule, SocketIoConfig } from "ng-socket-io";
+
+import { NavHeaderComponent } from "./navHeader/nav.component";
 
 import { StaticsComponent } from "./content/statics/statics.component";
 import { FuseSampleComponent } from "./content/qr/qr.component";
 import { ProfileComponent } from "./content/profile/profile.component";
 import { ProfileEditComponent } from "./content/profile-edit/profile-edit.component";
+import { FeedComponent } from "./content/feed/feed.component";
+import { FeedEditComponent } from "./content/feed-edit/feed-edit.component";
 
 const config: SocketIoConfig = {
     url: "https://herefyp.herokuapp.com",
@@ -42,6 +47,18 @@ const routes = [
     {
         path: "profile-edit",
         component: ProfileEditComponent
+    },
+    {
+        path: "feeds",
+        component: FeedComponent
+    },
+    {
+        path: "feed/:id",
+        component: FeedEditComponent
+    },
+    {
+        path: "feed",
+        component: FeedEditComponent
     }
 ];
 
@@ -59,7 +76,10 @@ const routes = [
         StaticsComponent,
         FuseSampleComponent,
         ProfileComponent,
-        ProfileEditComponent
+        ProfileEditComponent,
+        FeedComponent,
+        NavHeaderComponent,
+        FeedEditComponent
     ],
     imports: [
         SharedModule,
@@ -71,6 +91,6 @@ const routes = [
         FuseSearchBarModule
     ],
     exports: [FuseMainComponent],
-    providers: [UserService]
+    providers: [UserService, FeedService]
 })
 export class FuseMainModule {}

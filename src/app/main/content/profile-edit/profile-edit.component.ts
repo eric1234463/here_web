@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { UserService, Doctor } from "../../../services/user";
+import { UserService } from "../../../services/user";
+import { Doctor } from "../../../services/constant";
 import { fuseAnimations } from "../../../core/animations";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -14,7 +15,6 @@ import { Router } from "@angular/router";
 export class ProfileEditComponent implements OnInit {
     public doctor: Doctor;
     public form: FormGroup;
-    public formErrors: any;
 
     constructor(
         public userService: UserService,

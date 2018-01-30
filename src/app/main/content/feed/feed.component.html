@@ -1,0 +1,38 @@
+<div class="page-layout blank" fusePerfectScrollbar>
+    <div class="header mat-accent-bg p-24 h-160 nav-header" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="center start">
+            <div class="black-fg" fxLayout="col" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-16">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">Feed</span>
+            </div>
+            <div class="h1 mt-16">Feed</div>
+            <div class="actions" fxLayout="col" fxLayoutAlign="end center" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'200ms'}}">
+                <button mat-raised-button color="accent" aria-label="Add" (click)="goToAdd()">Add</button>
+            </div>
+        </div>
+    </div>
+    <ngx-datatable class="material p-24" [rows]="feeds" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="20">
+        <ngx-datatable-column name="Create Date">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span>{{row.createdAt | amDateFormat:'DD - MMMM - YYYY'}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Update Date">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span>{{row.updatedAt | amDateFormat:'DD - MMMM - YYYY'}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Title">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span>{{row.title}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Edit">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <button mat-raised-button type="button" color="accent" (click)="goToEdit(row)">Edit</button>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>

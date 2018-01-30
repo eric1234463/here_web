@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { UserService, Doctor } from "../../../services/user";
+import { UserService } from "../../../services/user";
+import { Doctor } from "../../../services/constant";
 import { fuseAnimations } from "../../../core/animations";
 import { Router } from "@angular/router";
 

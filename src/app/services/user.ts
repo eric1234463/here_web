@@ -1,35 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "angular2-social-login";
-
-export interface Doctor {
-    id: number;
-    uid: String;
-    photoURL?: String;
-    displayName?: String;
-    gender?: String;
-    age?: number;
-    about?: String;
-    telphone?: String;
-    location: String;
-    google_lng: number;
-    google_lat: number;
-}
-
-export interface FacebookUser {
-    email: String;
-    uid: String;
-    token: String;
-    image: String;
-}
-
-export interface GoogleUser {
-    email: String;
-    uid: String;
-    name: String;
-    image: String;
-}
-
+import { Doctor, FacebookUser, GoogleUser } from "./constant";
 @Injectable()
 export class UserService {
     public user: Doctor;
@@ -74,7 +46,7 @@ export class UserService {
 
     async getUser() {
         const id = window.localStorage.getItem("uid");
-        return await await this.http
+        return await this.http
             .get<Doctor>(`https://herefyp.herokuapp.com/api/doctor/${id}`)
             .toPromise();
     }
