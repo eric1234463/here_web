@@ -8,6 +8,7 @@ export interface Doctor {
     photoURL?: String;
     displayName?: String;
     gender?: String;
+    age?: number;
     about?: String;
     telphone?: String;
     location: String;
@@ -55,15 +56,26 @@ export class UserService {
                 email: googleUser.email
             })
             .toPromise();
-        window.localStorage.setItem("user", JSON.stringify(currentUser));
+        window.localStorage.setItem("uid", currentUser.id.toString());
         return currentUser;
     }
 
+    async update(doctorId: number, form) {
+        const currentUser = await this.http
+            .put(`https://herefyp.herokuapp.com/api/doctor/${doctorId}`, {
+                ...form
+            })
+            .toPromise();
+        return currentUser;
+    }
     logout() {
-        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("uid");
     }
 
     async getUser() {
-        return await JSON.parse(window.localStorage.getItem("user"));
+        const id = window.localStorage.getItem("uid");
+        return await await this.http
+            .get<Doctor>(`https://herefyp.herokuapp.com/api/doctor/${id}`)
+            .toPromise();
     }
 }

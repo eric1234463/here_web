@@ -20,6 +20,7 @@ import { SocketIoModule, SocketIoConfig } from "ng-socket-io";
 import { StaticsComponent } from "./content/statics/statics.component";
 import { FuseSampleComponent } from "./content/qr/qr.component";
 import { ProfileComponent } from "./content/profile/profile.component";
+import { ProfileEditComponent } from "./content/profile-edit/profile-edit.component";
 
 const config: SocketIoConfig = {
     url: "https://herefyp.herokuapp.com",
@@ -37,6 +38,10 @@ const routes = [
     {
         path: "profile",
         component: ProfileComponent
+    },
+    {
+        path: "profile-edit",
+        component: ProfileEditComponent
     }
 ];
 
@@ -53,7 +58,8 @@ const routes = [
         FuseQuickPanelComponent,
         StaticsComponent,
         FuseSampleComponent,
-        ProfileComponent
+        ProfileComponent,
+        ProfileEditComponent
     ],
     imports: [
         SharedModule,

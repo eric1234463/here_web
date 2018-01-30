@@ -15,8 +15,7 @@
 
         <div class="actions" fxLayout="row" fxLayoutAlign="end center" *fuseIfOnDom
              [@animate]="{value:'*',params:{delay:'200ms'}}">
-            <button mat-raised-button color="accent" aria-label="Follow">Follow</button>
-            <button mat-raised-button color="primary" aria-label="Send Message">Send Message</button>
+            <button mat-raised-button color="accent" aria-label="Edit" (click)="goToEdit()">Edit</button>
         </div>
 
     </div>
