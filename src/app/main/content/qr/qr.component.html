@@ -1,7 +1,7 @@
 <div class="page-layout blank p-24" fusePerfectScrollbar>
-    <div fxLayout="column" fxLayoutAlign="start center" *ngIf="connection == false">
+    <div fxLayout="column" fxLayoutAlign="start center" *ngIf="connection == false && id">
         <p>Please scan this QR code to transfer data</p>
-        <qr-code [value]="uid" [size]="300"></qr-code>
+        <qr-code [value]="id" [size]="300"></qr-code>
     </div>
     <div fxLayout="column" fxLayoutAlign="start" *ngIf="connection == true">
         <ngx-datatable class="material" [rows]="records" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
