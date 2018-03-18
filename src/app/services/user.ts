@@ -28,7 +28,7 @@ export class UserService {
                 email: googleUser.email
             })
             .toPromise();
-        window.localStorage.setItem("uid", currentUser.id.toString());
+        window.localStorage.setItem("user", JSON.stringify(currentUser));
         return currentUser;
     }
 
@@ -41,13 +41,13 @@ export class UserService {
         return currentUser;
     }
     logout() {
-        window.localStorage.removeItem("uid");
+        window.localStorage.removeItem("user");
     }
 
     async getUser() {
-        const id = window.localStorage.getItem("uid");
+        const user: Doctor = JSON.parse(window.localStorage.getItem("user"));
         return await this.http
-            .get<Doctor>(`https://herefyp.herokuapp.com/api/doctor/${id}`)
+            .get<Doctor>(`https://herefyp.herokuapp.com/api/doctor/${user.id}`)
             .toPromise();
     }
 }
