@@ -25,7 +25,7 @@ const providers = {
     },
     google: {
         clientId:
-            "1069815185055-vv0sljd168lc93rh8c3augpcu3bje4ph.apps.googleusercontent.com"
+            "1069815185055-67h83nghemvan2tdqhe5hrqtc4sps3r8.apps.googleusercontent.com"
     }
 };
 const appRoutes: Routes = [
