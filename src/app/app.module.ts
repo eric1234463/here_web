@@ -19,10 +19,6 @@ import { FuseLogin2Component } from "./main/content/authentication/login-2/login
 import { Angular2SocialLoginModule } from "angular2-social-login";
 
 const providers = {
-    facebook: {
-        clientId: "292006121312524",
-        apiVersion: "v2.5"
-    },
     google: {
         clientId:
             "1069815185055-67h83nghemvan2tdqhe5hrqtc4sps3r8.apps.googleusercontent.com"

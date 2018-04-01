@@ -15,6 +15,8 @@ import { FuseShortcutsModule } from "../core/components/shortcuts/shortcuts.modu
 import { FuseSearchBarModule } from "../core/components/search-bar/search-bar.module";
 import { UserService } from "../services/user";
 import { FeedService } from "../services/feed";
+import { RecordService } from "../services/record";
+
 import { QRCodeModule } from "angular2-qrcode";
 import { SocketIoModule, SocketIoConfig } from "ng-socket-io";
 
@@ -26,6 +28,7 @@ import { ProfileComponent } from "./content/profile/profile.component";
 import { ProfileEditComponent } from "./content/profile-edit/profile-edit.component";
 import { FeedComponent } from "./content/feed/feed.component";
 import { FeedEditComponent } from "./content/feed-edit/feed-edit.component";
+import { QrAddComponent } from "./content/qr-add/qr-add.component";
 
 const config: SocketIoConfig = {
     url: "https://herefyp.herokuapp.com",
@@ -39,6 +42,10 @@ const routes = [
     {
         path: "qr",
         component: FuseSampleComponent
+    },
+    {
+        path: "qr/:id",
+        component: QrAddComponent
     },
     {
         path: "profile",
@@ -79,7 +86,8 @@ const routes = [
         ProfileEditComponent,
         FeedComponent,
         NavHeaderComponent,
-        FeedEditComponent
+        FeedEditComponent,
+        QrAddComponent
     ],
     imports: [
         SharedModule,
@@ -91,6 +99,6 @@ const routes = [
         FuseSearchBarModule
     ],
     exports: [FuseMainComponent],
-    providers: [UserService, FeedService]
+    providers: [UserService, FeedService, RecordService]
 })
 export class FuseMainModule {}

@@ -29,7 +29,7 @@ export class FuseLogin2Component {
         });
         this.userService.getUser().then(user => {
             if (user !== null) {
-                this.router.navigateByUrl("/home");
+                this.router.navigateByUrl("/qr");
             }
         });
     }

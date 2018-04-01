@@ -47,3 +47,13 @@ export interface Feed {
     createDt: Date;
     updateDt: Date;
 }
+
+export interface Factor {
+    id: number;
+    name : string
+}
+
+export interface Medicine {
+    id: number;
+    name : string
+}

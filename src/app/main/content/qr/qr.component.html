@@ -3,37 +3,52 @@
         <p>Please scan this QR code to transfer data</p>
         <qr-code [value]="id" [size]="300"></qr-code>
     </div>
-    <div fxLayout="column" fxLayoutAlign="start" *ngIf="connection == true">
-        <ngx-datatable class="material" [rows]="records" [loadingIndicator]="loadingIndicator" [columnMode]="'force'"
-            [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="20">
+    <div *ngIf="connection == true">
+        <div class="header mat-accent-bg p-24 h-160 nav-header" fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="column" fxLayoutAlign="center start">
+                <div class="black-fg" fxLayout="col" fxLayoutAlign="start center">
+                    <mat-icon class="secondary-text s-16">home</mat-icon>
+                    <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                    <span class="secondary-text">QR</span>
+                </div>
+                <div class="h1 mt-16">QR</div>
+                <div class="actions" fxLayout="col" fxLayoutAlign="end center" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'200ms'}}">
+                    <button mat-raised-button color="accent" aria-label="Add" (click)="goToAdd()">Add</button>
+                </div>
+            </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start">
+            <ngx-datatable class="material" [rows]="records" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50"
+                [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="20">
 
-            <ngx-datatable-column name="Date">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    <span>{{row.createdAt | amDateFormat:'DD - MMMM - YYYY'}}</span>
-                </ng-template>
-            </ngx-datatable-column>
+                <ngx-datatable-column name="Date">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        <span>{{row.createdAt | amDateFormat:'DD - MMMM - YYYY'}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
 
-            <ngx-datatable-column name="Title">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    <span>{{row.title}}</span>
-                </ng-template>
-            </ngx-datatable-column>
+                <ngx-datatable-column name="Title">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        <span>{{row.title}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
 
-            <ngx-datatable-column name="Description">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    <span>{{row.description}}</span>
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Factor">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    <span *ngFor="let factor of row.RecordFactors" class="h4 p-4 m-4" [ngClass]="factor.class">{{factor.Factor.name}}</span>
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Medicine">
-                <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-                    <p *ngFor="let medicine of row.RecordMedicines" class="h4 p-4 m-4" [ngClass]="medicine.class">{{medicine.Medicine.name}}</p>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable>
+                <ngx-datatable-column name="Description">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        <span>{{row.description}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Factor">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        <span *ngFor="let factor of row.RecordFactors" class="h4 p-4 m-4" [ngClass]="factor.class">{{factor.Factor.name}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Medicine">
+                    <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                        <p *ngFor="let medicine of row.RecordMedicines" class="h4 p-4 m-4" [ngClass]="medicine.class">{{medicine.Medicine.name}}</p>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div>
     </div>
 </div>

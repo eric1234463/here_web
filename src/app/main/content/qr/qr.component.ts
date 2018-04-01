@@ -7,6 +7,7 @@ import { locale as turkish } from "./i18n/tr";
 import { HttpClient } from "@angular/common/http";
 import { UserService } from "../../../services/user";
 import { Doctor, Record } from "../../../services/constant";
+import { Router } from "@angular/router";
 
 @Component({
     selector: "fuse-sample",
@@ -18,11 +19,13 @@ export class FuseSampleComponent implements OnInit {
     public loadingIndicator = true;
     public records: Record[];
     public id: number;
+    public patientId: number;
     constructor(
         private translationLoader: FuseTranslationLoaderService,
         public socket: Socket,
         public http: HttpClient,
-        public userService: UserService
+        public userService: UserService,
+        public router : Router
     ) {
 
     }
@@ -45,7 +48,8 @@ export class FuseSampleComponent implements OnInit {
                 const patient: String = data.patient;
                 resolve(patient);
             });
-        }).then(patient => {
+        }).then((patient: number) => {
+            this.patientId = patient;
             this.http
                 .get<Record[]>(
                     `https://herefyp.herokuapp.com/api/record?userId=${patient}`
@@ -56,5 +60,10 @@ export class FuseSampleComponent implements OnInit {
                     this.loadingIndicator = false;
                 });
         });
+    }
+
+    goToAdd() {
+        this.router.navigate(["/qr", this.patientId]);
+
     }
 }
