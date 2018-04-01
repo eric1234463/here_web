@@ -41,7 +41,7 @@ export class QrAddComponent implements OnInit {
         });
     }
 
-    async update() {
+    async submit() {
         const user = await this.userService.getUser();
         const payload = {
             record: {
