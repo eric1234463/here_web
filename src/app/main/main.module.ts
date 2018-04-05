@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { SharedModule } from "../core/modules/shared.module";
+import { CalendarModule } from 'angular-calendar';
+
 import { FuseMainComponent } from "./main.component";
 import { FuseContentComponent } from "./content/content.component";
 import { FuseFooterComponent } from "./footer/footer.component";
@@ -29,6 +31,7 @@ import { ProfileEditComponent } from "./content/profile-edit/profile-edit.compon
 import { FeedComponent } from "./content/feed/feed.component";
 import { FeedEditComponent } from "./content/feed-edit/feed-edit.component";
 import { QrAddComponent } from "./content/qr-add/qr-add.component";
+import { BookingComponent } from "./content/booking/booking.component";
 
 const config: SocketIoConfig = {
     url: "https://herefyp.herokuapp.com",
@@ -66,6 +69,10 @@ const routes = [
     {
         path: "feed",
         component: FeedEditComponent
+    },
+    {
+        path: "booking",
+        component: BookingComponent
     }
 ];
 
@@ -87,7 +94,8 @@ const routes = [
         FeedComponent,
         NavHeaderComponent,
         FeedEditComponent,
-        QrAddComponent
+        QrAddComponent,
+        BookingComponent,
     ],
     imports: [
         SharedModule,
@@ -96,7 +104,8 @@ const routes = [
         RouterModule.forChild(routes),
         FuseNavigationModule,
         FuseShortcutsModule,
-        FuseSearchBarModule
+        FuseSearchBarModule,
+        CalendarModule.forRoot()
     ],
     exports: [FuseMainComponent],
     providers: [UserService, FeedService, RecordService]

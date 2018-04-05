@@ -15,11 +15,6 @@ export class NavigationModel {
                         type: "item",
                         icon: "email",
                         url: "/qr"
-                        // 'badge': {
-                        // 	'title': 25,
-                        // 	'bg': '#F44336',
-                        // 	'fg': '#FFFFFF'
-                        // }
                     },
                     {
                         id: "Home",
@@ -34,6 +29,13 @@ export class NavigationModel {
                         type: "item",
                         icon: "rss_feed",
                         url: "/feeds"
+                    },
+                    {
+                        id: "Patient Appointment",
+                        title: "Patient Appointment",
+                        type: "item",
+                        icon: "rss_feed",
+                        url: "/booking"
                     }
                 ]
             }

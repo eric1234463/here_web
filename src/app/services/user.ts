@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "angular2-social-login";
-import { Doctor, FacebookUser, GoogleUser } from "./constant";
+import { Doctor, FacebookUser, GoogleUser, Booking } from "./constant";
 @Injectable()
 export class UserService {
     public user: Doctor;
@@ -49,5 +49,20 @@ export class UserService {
         return await this.http
             .get<Doctor>(`https://herefyp.herokuapp.com/api/doctor/${user.id}`)
             .toPromise();
+    }
+
+    async getBookings() {
+        const date = new Date();
+        const user: Doctor = JSON.parse(window.localStorage.getItem("user"));
+        return await this.http
+        .get<Booking[]>(`https://herefyp.herokuapp.com/api/booking/doctor?id=${user.id}&date=${date}`)
+        .toPromise();
+    }
+
+    async acceptBooking(id, accept) {
+        return await this.http.put('https://herefyp.herokuapp.com/api/booking',{
+            id,
+            accept
+        }).toPromise();
     }
 }

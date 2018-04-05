@@ -1,0 +1,45 @@
+<div class="page-layout blank" fusePerfectScrollbar>
+    <div class="header mat-accent-bg p-24 h-160 nav-header" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="center start">
+            <div class="black-fg" fxLayout="col" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-16">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">Booking</span>
+            </div>
+            <div class="h1 mt-16">Booking</div>
+        </div>
+    </div>
+    <ngx-datatable class="material p-24" [rows]="bookings" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [limit]="20">
+        <ngx-datatable-column name="Patient Name">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span>{{row.Patient.displayName}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Patient Gender">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span>{{row.Patient.gender}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Date">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span>{{row.date | amDateFormat:'DD - MMMM - YYYY'}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Status">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <span class="h4 p-8 m-4 mat-primary-bg" *ngIf="row.status === 'R'">Waiting for Accept</span>
+                <span class="h4 p-8 m-4 mat-accent-bg" *ngIf="row.status === 'A'">Accepted</span>
+                <span class="h4 p-8 m-4 mat-red-bg" *ngIf="row.status === 'D'">Rejected</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Options">
+            <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <div *ngIf="row.status === 'R'">
+                    <button mat-raised-button color="primary" aria-label="Add" (click)="operate(row,true)">Accept</button>
+                    <button mat-raised-button color="warn" aria-label="Add" (click)="operate(row,false)">Reject</button>
+                </div>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+</div>

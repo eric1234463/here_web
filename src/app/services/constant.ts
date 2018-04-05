@@ -48,6 +48,14 @@ export interface Feed {
     updateDt: Date;
 }
 
+export interface Booking {
+    id: number;
+    doctorId: number;
+    patientId: number;
+    date: Date;
+    time: Date;
+}
+
 export interface Factor {
     id: number;
     name : string

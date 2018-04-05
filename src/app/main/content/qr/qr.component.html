@@ -1,4 +1,14 @@
-<div class="page-layout blank p-24" fusePerfectScrollbar>
+<div class="page-layout blank" fusePerfectScrollbar>
+    <div class="header mat-accent-bg p-24 h-160 nav-header" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="center start">
+            <div class="black-fg" fxLayout="col" fxLayoutAlign="start center">
+                <mat-icon class="secondary-text s-16">home</mat-icon>
+                <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+                <span class="secondary-text">QR Code Scan</span>
+            </div>
+            <div class="h1 mt-16">QR Code Scan</div>
+        </div>
+    </div>
     <div fxLayout="column" fxLayoutAlign="start center" *ngIf="connection == false && id">
         <p>Please scan this QR code to transfer data</p>
         <qr-code [value]="id" [size]="300"></qr-code>
