@@ -37,7 +37,7 @@ export class FuseSampleComponent implements OnInit {
         this.socket.emit("subscribe", user.id);
         this.translationLoader.loadTranslations(english, turkish);
         new Promise((resolve, reject) => {
-            this.socket.on("cancel doctor", function(data) {
+            this.socket.on("cancel room connection", function(data) {
                 resolve();
             });
         }).then(() => {

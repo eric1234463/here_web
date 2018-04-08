@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { RecordService } from "../../../services/record";
 import { UserService } from "../../../services/user";
-import { Factor, Medicine,  } from "../../../services/constant";
+import { Factor, Medicine, Doctor,  } from "../../../services/constant";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Socket } from "ng-socket-io";
 
 @Component({
     selector: "app-qr-add",
@@ -16,16 +17,20 @@ export class QrAddComponent implements OnInit {
     public patientId: number;
     public medicines : Medicine[];
     public factors : Factor[];
-
+    public user: Doctor;
     constructor(
         public recordService: RecordService,
         public userService : UserService,
         public route: ActivatedRoute,
         public router: Router,
+        public socket: Socket,
         public formBuilder: FormBuilder
     ) {}
 
     async ngOnInit() {
+        this.user = await this.userService.getUser();
+        this.socket.connect();
+        this.socket.emit("subscribe", this.user.id);
         this.form = this.formBuilder.group({
             title: ["", Validators.compose([Validators.required])],
             description: ["", Validators.compose([Validators.required])],
@@ -42,12 +47,11 @@ export class QrAddComponent implements OnInit {
     }
 
     async submit() {
-        const user = await this.userService.getUser();
         const payload = {
             record: {
                 title: this.form.value.title,
                 description: this.form.value.description,
-                doctorId: user.id,
+                doctorId: this.user.id,
                 patientId: this.patientId
             },
             factors: this.form.value.factors,
@@ -55,6 +59,9 @@ export class QrAddComponent implements OnInit {
         }
         try {
             const record = await this.recordService.createRecord(payload);
+            this.socket.emit('cancel connection', {
+                room: this.user.id
+              });
             this.router.navigateByUrl("/qr");
         } catch(e){
             console.log(e);
