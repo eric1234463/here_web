@@ -22,13 +22,13 @@
                     <span class="secondary-text">QR</span>
                 </div>
                 <div class="h1 mt-16">QR</div>
-                <div class="actions" fxLayout="col" fxLayoutAlign="end center" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'200ms'}}">
+                <div class="actions" fxLayout="col" fxLayoutAlign="end center">
                     <button mat-raised-button color="accent" aria-label="Add" (click)="goToAdd()">Add</button>
                 </div>
             </div>
         </div>
         <div fxLayout="column" fxLayoutAlign="start">
-            <ngx-datatable class="material" [rows]="records" [loadingIndicator]="loadingIndicator" [columnMode]="'force'" [headerHeight]="50"
+            <ngx-datatable class="material" [rows]="records" [columnMode]="'force'" [headerHeight]="50"
                 [footerHeight]="50" [rowHeight]="'auto'" [scrollbarH]="true" [reorderable]="reorderable" [limit]="20">
 
                 <ngx-datatable-column name="Date">

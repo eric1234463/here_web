@@ -17,7 +17,7 @@
 
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                     <mat-form-field fxFlex="100">
-                        <textarea rows="15" matInput placeholder="Description" formControlName="description"></textarea>
+                        <textarea rows="15" matInput placeholder="Description" formControlName="description" required></textarea>
                         <mat-error *ngIf="!form.controls.description.valid">
                             Description is required!
                         </mat-error>
@@ -25,14 +25,14 @@
                 </div>
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                     <mat-form-field fxFlex="100">
-                        <mat-select placeholder="Medicines" formControlName="medicines" multiple>
+                        <mat-select placeholder="Medicines" formControlName="medicines" multiple required>
                             <mat-option *ngFor="let medicine of medicines" [value]="medicine.id">{{medicine.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
                     <mat-form-field fxFlex="100">
-                        <mat-select placeholder="Factors" formControlName="factors" multiple>
+                        <mat-select placeholder="Factors" formControlName="factors" multiple required>
                             <mat-option *ngFor="let factor of factors" [value]="factor.id">{{factor.name}}</mat-option>
                         </mat-select>
                     </mat-form-field>

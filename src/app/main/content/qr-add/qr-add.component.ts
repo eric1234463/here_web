@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { RecordService } from "../../../services/record";
 import { UserService } from "../../../services/user";
-import { Factor, Medicine, Doctor,  } from "../../../services/constant";
+import { Factor, Medicine, Doctor } from "../../../services/constant";
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Socket } from "ng-socket-io";
@@ -15,12 +15,12 @@ export class QrAddComponent implements OnInit {
     public form: FormGroup;
     public edit = false;
     public patientId: number;
-    public medicines : Medicine[];
-    public factors : Factor[];
+    public medicines: Medicine[];
+    public factors: Factor[];
     public user: Doctor;
     constructor(
         public recordService: RecordService,
-        public userService : UserService,
+        public userService: UserService,
         public route: ActivatedRoute,
         public router: Router,
         public socket: Socket,
@@ -28,9 +28,6 @@ export class QrAddComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
-        this.user = await this.userService.getUser();
-        this.socket.connect();
-        this.socket.emit("subscribe", this.user.id);
         this.form = this.formBuilder.group({
             title: ["", Validators.compose([Validators.required])],
             description: ["", Validators.compose([Validators.required])],
@@ -44,6 +41,10 @@ export class QrAddComponent implements OnInit {
                 this.patientId = params["id"];
             }
         });
+
+        this.user = await this.userService.getUser();
+        this.socket.connect();
+        this.socket.emit("subscribe", this.user.id);
     }
 
     async submit() {
@@ -56,14 +57,14 @@ export class QrAddComponent implements OnInit {
             },
             factors: this.form.value.factors,
             medicines: this.form.value.medicines
-        }
+        };
         try {
             const record = await this.recordService.createRecord(payload);
-            this.socket.emit('cancel connection', {
+            this.socket.emit("cancel connection", {
                 room: this.user.id
-              });
+            });
             this.router.navigateByUrl("/qr");
-        } catch(e){
+        } catch (e) {
             console.log(e);
         }
     }
