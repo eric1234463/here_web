@@ -4,6 +4,7 @@ import { SharedModule } from "../core/modules/shared.module";
 import { CalendarModule } from "angular-calendar";
 import { FuseMainComponent } from "./main.component";
 import { FuseContentComponent } from "./content/content.component";
+import { FuseWidgetModule } from '../core/components/widget/widget.module';
 import { FuseFooterComponent } from "./footer/footer.component";
 import { FuseNavbarVerticalComponent } from "./navbar/vertical/navbar-vertical.component";
 import { FuseToolbarComponent } from "./toolbar/toolbar.component";
@@ -105,6 +106,7 @@ const routes = [
         FuseNavigationModule,
         FuseShortcutsModule,
         FuseSearchBarModule,
+        FuseWidgetModule,
         CalendarModule.forRoot(),
         AgmCoreModule.forRoot({
             apiKey: "AIzaSyDY9138TLI3CkoYw8Zz7YR5nOBE3qPlTtE"

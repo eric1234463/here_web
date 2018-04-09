@@ -1,3 +1,34 @@
-<p>
-  statics works!
-</p>
+<div class="page-layout blank" fusePerfectScrollbar>
+
+    <div class="header mat-accent-bg p-24 h-160 nav-header" fxLayout="row" fxLayoutAlign="start center">
+        <div class="header mat-accent-bg p-24 pb-0" fxLayout="column" fxLayoutAlign="space-between">
+            <div fxLayout="row" fxLayoutAlign="space-between start" *ngIf="user">
+                <span class="mat-display-1 mb-0 welcome-message" *fuseIfOnDom [@animate]="{value:'*',params:{x:'50px'}}">Welcome back, {{user.displayName}}!</span>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start">
+        <fuse-widget class="" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+            <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
+                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>Patient Total Within a month</div>
+                </div>
+                <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                    <ngx-charts-pie-chart [view]="view" [results]="pie" [labels]="showXAxisLabel">
+                    </ngx-charts-pie-chart>
+                </div>
+            </div>
+        </fuse-widget>
+        <fuse-widget class="" fxLayout="column" fxFlex="100" fxFlex.gt-xs="50" fxFlex.gt-md="50">
+            <div class="fuse-widget-front mat-white-bg mat-elevation-z2">
+                <div class="pl-16 pr-8 py-16 h-52" fxLayout="row" fxLayoutAlign="space-between center">
+                    <div>Patient Total Every Day in a Week</div>
+                </div>
+                <div class="pt-8 pb-32" fxLayout="column" fxLayoutAlign="center center">
+                    <ngx-charts-bar-vertical [view]="view" [results]="patient" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel">
+                    </ngx-charts-bar-vertical>
+                </div>
+            </div>
+        </fuse-widget>
+    </div>
+</div>

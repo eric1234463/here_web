@@ -7,7 +7,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { NgxDnDModule } from '@swimlane/ngx-dnd';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FuseMatSidenavHelperDirective, FuseMatSidenavTogglerDirective } from '../directives/mat-sidenav-helper/mat-sidenav-helper.directive';
 import { FusePipesModule } from '../pipes/pipes.module';
 import { FuseConfirmDialogComponent } from '../components/confirm-dialog/confirm-dialog.component';
@@ -45,9 +45,11 @@ import { MomentModule } from 'angular2-moment';
         ColorPickerModule,
         NgxDnDModule,
         NgxDatatableModule,
+        NgxChartsModule,
         MomentModule
     ],
     exports: [
+        NgxChartsModule,
         FlexLayoutModule,
         MaterialModule,
         CommonModule,
