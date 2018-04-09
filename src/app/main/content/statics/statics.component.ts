@@ -9,8 +9,8 @@ import { UserService } from "../../../services/user";
 })
 export class StaticsComponent implements OnInit {
     public view: any[] = [700, 400];
-    showXAxis = true;
-    showYAxis = true;
+    showXAxisLabel = true;
+    showYAxisLabel = true;
     public pie = [
         {
             name: "Men",
