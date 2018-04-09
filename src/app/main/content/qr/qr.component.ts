@@ -25,10 +25,8 @@ export class FuseSampleComponent implements OnInit {
         public socket: Socket,
         public http: HttpClient,
         public userService: UserService,
-        public router : Router
-    ) {
-
-    }
+        public router: Router
+    ) {}
 
     async ngOnInit() {
         const user = await this.userService.getUser();
@@ -36,34 +34,26 @@ export class FuseSampleComponent implements OnInit {
         this.socket.connect();
         this.socket.emit("subscribe", user.id);
         this.translationLoader.loadTranslations(english, turkish);
-        new Promise((resolve, reject) => {
-            this.socket.on("cancel room connection", function(data) {
-                resolve();
-            });
-        }).then(() => {
+        this.socket.fromEvent("cancel room connection").subscribe(data => {
             this.connection = false;
         });
-        new Promise((resolve, reject) => {
-            this.socket.on("connect doctor", function(data) {
-                const patient: String = data.patient;
-                resolve(patient);
-            });
-        }).then((patient: number) => {
-            this.patientId = patient;
+
+        this.socket.fromEvent<any>("connect doctor").subscribe(data => {
+            this.patientId = data.patient;
             this.http
                 .get<Record[]>(
-                    `https://herefyp.herokuapp.com/api/record?userId=${patient}`
+                    `https://herefyp.herokuapp.com/api/record?userId=${
+                        data.patient
+                    }`
                 )
                 .subscribe(records => {
                     this.connection = true;
                     this.records = records;
-                    this.loadingIndicator = false;
                 });
         });
     }
 
     goToAdd() {
         this.router.navigate(["/qr", this.patientId]);
-
     }
 }
