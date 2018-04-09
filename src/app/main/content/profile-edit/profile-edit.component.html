@@ -16,11 +16,10 @@
                 </div>
 
                 <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto" fxLayoutWrap>
-
                     <mat-form-field fxFlex="100">
                         <textarea matInput placeholder="Address" formControlName="location" required></textarea>
                         <mat-error *ngIf="!form.controls.location.valid">
-                            Location is required!
+                            Address is required!
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field fxFlex="100">

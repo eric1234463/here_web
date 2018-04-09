@@ -1,13 +1,13 @@
 export interface Doctor {
     id: number;
-    uid: String;
-    photoURL?: String;
-    displayName?: String;
-    gender?: String;
+    uid: string;
+    photoURL?: string;
+    displayName?: string;
+    gender?: string;
     age?: number;
-    about?: String;
-    telphone?: String;
-    location: String;
+    about?: string;
+    telphone?: string;
+    location: string;
     google_lng: number;
     google_lat: number;
 }
