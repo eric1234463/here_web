@@ -13,7 +13,7 @@ export class NavigationModel {
                         id: "QR",
                         title: "QR",
                         type: "item",
-                        icon: "email",
+                        icon: "apps",
                         url: "/qr"
                     },
                     {
@@ -34,7 +34,7 @@ export class NavigationModel {
                         id: "Patient Appointment",
                         title: "Patient Appointment",
                         type: "item",
-                        icon: "rss_feed",
+                        icon: "bookmark",
                         url: "/booking"
                     }
                 ]
